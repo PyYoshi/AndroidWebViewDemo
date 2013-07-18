@@ -25,6 +25,7 @@ public class WebViewActivity extends SherlockActivity {
 
         // Google検索のロード
         mWebView.loadUrl("https://www.google.com/");
+        setTitle("Now Loading...");
 
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.getSettings().setLoadWithOverviewMode(true);
@@ -39,6 +40,7 @@ public class WebViewActivity extends SherlockActivity {
             }
             @Override
             public void onPageFinished(WebView view, String url) {
+                mActivity.setTitle(mWebView.getTitle());
                 mActivity.setSupportProgressBarIndeterminateVisibility(false);
             }
             @Override
