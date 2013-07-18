@@ -12,6 +12,7 @@ import com.actionbarsherlock.view.Window;
 public class WebViewActivity extends SherlockActivity {
 
     private WebView mWebView;
+    private SherlockActivity mActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class WebViewActivity extends SherlockActivity {
         setContentView(R.layout.main);
 
         mWebView = (WebView)findViewById(R.id.webView);
+        mActivity = this;
 
         // Google検索のロード
         mWebView.loadUrl("https://www.google.com/");
@@ -33,11 +35,11 @@ public class WebViewActivity extends SherlockActivity {
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                setProgressBarIndeterminateVisibility(true);
+                mActivity.setSupportProgressBarIndeterminateVisibility(true);
             }
             @Override
             public void onPageFinished(WebView view, String url) {
-                setProgressBarIndeterminateVisibility(false);
+                mActivity.setSupportProgressBarIndeterminateVisibility(false);
             }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
